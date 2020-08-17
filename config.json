@@ -1,0 +1,7 @@
+{
+	"version": 0.1,
+	"action": {
+		"port": "COM4",
+		"baud": 9600
+	}
+}
