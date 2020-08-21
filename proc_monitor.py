@@ -29,6 +29,7 @@ def get_processes_list():
 
 def print_help():
     print("proc_monitor list")
+    print("proc_monitor find <name>")
     print("proc_monitor action <port> <baud>")
     print("proc_monitor watch <name> <pid>")
 
@@ -42,6 +43,18 @@ if __name__ == "__main__":
     if cmd == "list":
         for proc in get_processes_list():
             print(proc.info)
+    if cmd == "find":
+        proc_name = sys.argv[2]
+        found = False
+        i = 1
+        for proc in get_processes_list():
+            if proc_name in proc.info["name"]:
+                print("Found #%d" % i)
+                print(proc.info)
+                found = True
+                i += 1
+        if not found:
+            print("Cannot find %s" % proc_name)
     if cmd == "action":
         if len(sys.argv) != 4:
             print_help()
